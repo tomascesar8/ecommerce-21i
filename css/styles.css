@@ -1,0 +1,9 @@
+body{
+    background-image: url(../assets/img/1.jpg);
+    background-size: cover;
+}
+
+#login-container{
+    width: 19rem;
+    border-radius: 1rem;
+}

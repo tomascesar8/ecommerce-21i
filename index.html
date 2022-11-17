@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RollingCommerce</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="vh-100 d-flex flex-column justify-content-center align-items-center">
+    <div id="login-container" class="d-flex flex-column bg-dark p-3">
+        <form id="login-form" onsubmit="loginCheck(event)" class="d-flex flex-column">
+            <label class="text-white fs-6 m-2" for="email">• Ingresá tu email:</label>
+            <input class="m-2" id="email" name="email" type="email" required>
+            <label class="text-white fs-6 m-2" for="pass">• Ingresá tu contraseña:</label>
+            <input class="m-2" type="password" name="pass" id="pass" required>
+            <button class="badge text-bg-success fs-5 m-2" type="submit">Ingresar</button>
+        </form>
+        <a class="badge text-primary fs-5 " href="">Registrate aquí</a>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="/login.js"></script>
+</body>
+</html>
