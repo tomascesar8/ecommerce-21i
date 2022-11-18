@@ -1,5 +1,5 @@
 class User {
-    constructor(name, lastname, email, password, country, admin){
+    constructor(name, lastname, country, email, password, admin){
         this.name = name;
         this.lastname = lastname;
         this.email = email;
@@ -10,25 +10,36 @@ class User {
 }
 
 let users = [
-    new User('Tomás','César', 'tomcesar@hotmail.com', '123456', 'Argentina', true),
-    new User('Nicolás','César', 'n_cesar@hotmail.com', '111111', 'Argentina', false),
-    new User('Gonzalo','César', 'g_ces@hotmail.com', '222222', 'Argentina', false),
-    new User('María Celeste','César', 'celecesar@hotmail.com', '333333', 'Argentina', false),
-    new User('Viviana Matilde','Bacha', 'vmbacha7@outlock.com', '444444', 'Argentina', false),
-]
+    new User('Tomás','César', 'Argentina', 'tomcesar@hotmail.com', '123456', true),
+    new User('Nicolás','César', 'Argentina', 'n_cesar@hotmail.com', '111111', false),
+    new User('Gonzalo','César', 'Argentina', 'g_ces@hotmail.com', '222222', false),
+    new User('María Celeste','César', 'Argentina', 'celecesar@hotmail.com', '333333', false),
+    new User('Viviana Matilde','Bacha', 'Argentina', 'vmbacha7@outlock.com', '444444', false),
+];
+
+let usersLocalStorage = localStorage.getItem('users'); 
+console.log(usersLocalStorage);
+let dataUsersLS = JSON.parse(usersLocalStorage);
+console.log(dataUsersLS);
+if(!dataUsersLS){
+    let usersJSON = JSON.stringify(users);
+    localStorage.setItem('users', usersJSON);
+}
+// localStorage.clear()
+
 
 function loginCheck(event){
     event.preventDefault();
     let email = document.querySelector('#email').value;
     let pass = document.querySelector('#pass').value;
     let userLogged = users.find(user=>user.email==email);
-    let passUserLogged = users.find(user=>user.password == pass)
+    let passUserLogged = userLogged.password == pass;
     console.log(email);
     console.log(pass);
     if(userLogged){
         console.log('Email verificado');
         if(passUserLogged){
-            window.location.assign('http://127.0.0.1:5500/main.html')
+            window.location.assign('http://127.0.0.1:5500/main.html');
             console.log('Iniciaste sesión');
         }else{
             let invalidPass = document.createElement('div');
@@ -48,4 +59,22 @@ function loginCheck(event){
         console.log('El email no se corresponde con ningún usuario');
         setTimeout(() => {parentElement.removeChild(invalidEmail)}, 5000);
     }
+}
+
+function register() {
+    let name = document.getElementById('register-name').value;
+    let lastname = document.getElementById('register-lastname').value;
+    let country = document.getElementById('register-country').value;
+    let email = document.getElementById('register-email').value;
+    let newUserPass = document.getElementById('register-pass').value;
+
+    let newUser = new User(name, lastname, country, email, newUserPass);
+    
+    let data = localStorage.getItem('users');
+    let usersLS = JSON.parse(data);
+    usersLS.push(newUser);
+    data = JSON.stringify(usersLS);
+    localStorage.setItem('users', data);
+
+    window.location.assign('http://127.0.0.1:5500/main.html');
 }

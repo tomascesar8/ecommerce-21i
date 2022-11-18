@@ -18,8 +18,39 @@
             <input class="m-2" type="password" name="pass" id="pass" required>
             <button class="badge text-bg-success fs-5 m-2" type="submit">Ingresar</button>
         </form>
-        <a class="badge text-primary fs-5 " href="">Registrate aquí</a>
+        <button class="badge text-primary fs-5 button-without-styles" data-bs-toggle="modal" data-bs-target="#registerModal" type="button">Registrate aquí</button>
     </div>
+<!-- Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark">
+        <div class="modal-header">
+          <h1 class="modal-title fs-3 text-warning text-center w-100 ms-4" id="exampleModalLabel">Registro</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="register-form" class="d-flex flex-column">
+                <label class="badge text-start text-white fs-5 " for="register-name">Nombre:</label>
+                <input class="form-control m-2" type="text" name="name" id="register-name" required>
+                <label class="badge text-start text-white fs-5" for="register-lastname">Apellido:</label>
+                <input class="form-control m-2" type="text" name="lastname" id="register-lastname" required>
+                <label class="badge text-start text-white fs-5" for="register-country">País:</label>
+                <input class="form-control m-2" type="text" name="country" id="register-country" required>
+                <label class="badge text-start text-white fs-5" for="register-email">Email:</label>
+                <input class="form-control m-2" type="email" name="email" id="register-email" required>
+                <label class="badge text-start text-white fs-5" for="register-pass">Contraseña:</label>
+                <input class="form-control m-2" type="password" name="pass" id="register-pass" required>
+                <!-- <label class="badge text-start text-white fs-5" for="validation-register-pass">Repetir contraseña:</label>
+                <input class="form-control m-2" type="password" name="pass" id="validation-register-pass" required> -->
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary">Borrar todo</button>
+          <button type="button" class="btn btn-primary" onclick="register()">Registrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

@@ -7,3 +7,8 @@ body{
     width: 19rem;
     border-radius: 1rem;
 }
+
+.button-without-styles{
+    border: none;
+    background-color: transparent;
+}
