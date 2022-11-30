@@ -27,19 +27,20 @@ if(!dataUsersLS){
 }
 // localStorage.clear()
 
-
+//! TAREA: PASAR FUNCION A LOCAL STORAGE
 function loginCheck(event){
     event.preventDefault();
     let email = document.querySelector('#email').value;
     let pass = document.querySelector('#pass').value;
-    let userLogged = users.find(user=>user.email==email);
+    const usersLSConvertido = JSON.parse(localStorage.getItem('users'));
+    let userLogged = usersLSConvertido.find(user=>user.email==email);
     let passUserLogged = userLogged.password == pass;
     console.log(email);
     console.log(pass);
     if(userLogged){
         console.log('Email verificado');
         if(passUserLogged){
-            window.location.assign('http://127.0.0.1:5500/main.html');
+            window.location.assign('http://127.0.0.1:5500/main.html');  //tambien puede ponerse: window.location.assign(window.location.origin+'/main.html')
             console.log('Iniciaste sesión');
         }else{
             let invalidPass = document.createElement('div');
@@ -68,13 +69,48 @@ function register() {
     let email = document.getElementById('register-email').value;
     let newUserPass = document.getElementById('register-pass').value;
 
-    let newUser = new User(name, lastname, country, email, newUserPass);
-    
-    let data = localStorage.getItem('users');
-    let usersLS = JSON.parse(data);
-    usersLS.push(newUser);
-    data = JSON.stringify(usersLS);
-    localStorage.setItem('users', data);
+    let nameOk = /^[A-Z\s]+$/i.test(name.trim());
+    let lastNameOk = /^[A-Z\s]+$/i.test(lastname.trim());
+    let countryOk = /^[A-Z\s]+$/i.test(country.trim());
+    let emailOk = /([a-z]\w+@[a-z]{2,5})/.test(email);
+    let newUserPassOk = /^[A-Z](?=\w*\d)(?=\w*[a-z])\S{8,16}$/.test(newUserPass); 
+    //!- completar con más requisitos (ej- solucionar los acentos, largo, minimo, que no sea 0, etc)
 
-    window.location.assign('http://127.0.0.1:5500/main.html');
+    switch (false) {
+        case nameOk:
+            console.log('Nombre Incorrecto');
+        break;
+        case lastNameOk:
+            console.log('Apellido Incorrecto');
+        break;
+        case countryOk:
+            console.log('País Incorrecto');
+        break;
+        case emailOk:
+            console.log('Email Incorrecto');
+        break;
+        case newUserPassOk:
+            console.log('Contraseña Incorrecta');
+        break;
+        default:
+            let newUser = new User(name, lastname, country, email, newUserPass);
+    
+            let data = localStorage.getItem('users');
+            let usersLS = JSON.parse(data);
+            usersLS.push(newUser);
+            data = JSON.stringify(usersLS);
+            localStorage.setItem('users', data);
+
+            window.location.assign('http://127.0.0.1:5500/main.html');
+            break;
+        }
+
 }
+
+//!ALGO ASI: (INVESTIGAR)
+// function validation(objeto){
+//     objeto.email = /([a-z]\w+@[a-z]{2,5})/.test(email);
+//     let errorEmail = document.getElementById('register-email');
+//     errorEmail.classList.add('fs-1')
+// }
+// validation(newUser)
